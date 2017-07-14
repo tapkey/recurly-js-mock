@@ -3,3 +3,6 @@ node_js:
   - "6"
   - "7"
   - "node"
+install:
+  - npm install
+  - npm run build
