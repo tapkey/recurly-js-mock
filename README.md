@@ -1,4 +1,6 @@
 # recurly-js-mock
+[![Build Status](https://travis-ci.org/tapkey/recurly-js-mock.svg?branch=master)](https://travis-ci.org/tapkey/recurly-js-mock)
+
 A tiny service returning [`Recurly.js`][recurlyjs] tokens for automated test scenarios
 
 # What it does
