@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Recurly.js Mock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <form method="post" action="/api/subscriptions/new">
+    <div data-recurly="number" id="number"></div>
+    <div data-recurly="month" id="month"></div>
+    <div data-recurly="year" id="year"></div>
+    <input type="text" data-recurly="first_name" id="first_name" name="first-name">
+    <input type="text" data-recurly="last_name" id="last_name" name="last-name">
+    <input type="text" data-recurly="address1" id="address1">
+    <input type="text" data-recurly="city" id="city">
+    <input type="text" data-recurly="country" id="country">
+    <input type="text" data-recurly="postal_code" id="postal_code">
+    <button id="subscribe">Subscribe</button>
+    <input type="hidden" data-recurly="token" name="recurly-token">
+  </form>
+</body>
+
+</html>

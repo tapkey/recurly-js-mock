@@ -1,0 +1,7 @@
+/*.ts
+/*.html
+tsconfig.json
+tslint.json
+.editorconfig
+.npmignore
+.gitattributes

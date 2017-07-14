@@ -1,0 +1,38 @@
+{
+  "name": "recurly-js-mock",
+  "version": "0.1.0",
+  "description": "A tiny service returning Recurly.js tokens for automated test scenarios.",
+  "private": false,
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Sebastian Haas <sebastian@tapkey.com> (https://www.tapkey.com)"
+  },
+  "scripts": {
+    "lint": "tslint -c tslint.json '*.ts'",
+    "build": "npm run lint && npm run tsc",
+    "postbuild": "copyfiles recurlyJsMock.html build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "bin": "./build/recurlyJsMockCLI.js",
+  "main": "./build/recurlyJsMock.js",
+  "dependencies": {
+    "@types/commander": "^2.9.1",
+    "@types/deepmerge": "^1.3.1",
+    "@types/file-url": "^1.0.28",
+    "@types/node": "^8.0.1",
+    "commander": "^2.11.0",
+    "deepmerge": "^1.5.0",
+    "file-url": "^2.0.2",
+    "phantom": "^4.0.4"
+  },
+  "devDependencies": {
+    "copyfiles": "^1.2.0",
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=6.11.1",
+    "npm": ">=5.1.0"
+  }
+}

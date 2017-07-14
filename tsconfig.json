@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "declaration": true,
+    "target": "es5",
+    "outDir": "build",
+    "lib": ["es2015"]
+  },
+  "exclude": [
+    "build",
+    "node_modules"
+  ]
+}
