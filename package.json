@@ -1,6 +1,6 @@
 {
   "name": "recurly-js-mock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tiny service returning Recurly.js tokens for automated test scenarios.",
   "private": false,
   "license": "Apache-2.0",
