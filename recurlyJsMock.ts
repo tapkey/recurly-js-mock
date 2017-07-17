@@ -2,6 +2,7 @@ import * as merge from "deepmerge";
 import fileUrl = require("file-url");
 import * as path from "path";
 import * as phantom from "phantom";
+import * as request from "request";
 
 declare var window: any;
 declare var recurly: any;
@@ -134,6 +135,54 @@ export class RecurlyJsMock {
 
   }
 
+  /**
+   * Returns the Recurly.js token without running a headless browser.
+   *
+   * @param publicApiKey The public API key of the Recurly account to be used
+   * @param logLevel The desired log level. Can be debug, info, warn or error.
+   * @param details The payment information to be used
+   */
+  public static getTokenAPICall(
+    publicApiKey: string,
+    logLevel: LogLevel = LogLevel.Error,
+    details?: PaymentDetails): Promise<RecurlyToken> {
+
+    return new Promise<RecurlyToken>((resolve, reject) => {
+      const url = "https://api.recurly.com/js/v1/token";
+      const data = RecurlyJsMock.mergeWithDefaults(details);
+      const formData = {
+        address1: data.address1 ? data.address1 : "",
+        address2: data.address2 ? data.address2 : "",
+        city: data.city ? data.city : "",
+        country: data.country ? data.country : "",
+        cvv: data.cardData.cvv ? data.cardData.cvv : "",
+        first_name: data.cardData.firstName ? data.cardData.firstName : "",
+        key: publicApiKey,
+        last_name: data.cardData.lastName ? data.cardData.lastName : "",
+        month: data.cardData.month ? data.cardData.month : "",
+        number: data.cardData.number ? data.cardData.number : "",
+        phone: data.phone ? data.phone : "",
+        postal_code: data.postalCode ? data.postalCode : "",
+        state: data.state ? data.state : "",
+        vat_number: data.vatNumber ? data.vatNumber : "",
+        year: data.cardData.year ? data.cardData.year : ""
+      };
+      request.post({ url, formData }, (err, res, body) => {
+        if (err || res.statusCode !== 200) {
+          reject(err);
+        } else {
+          body = JSON.parse(body);
+          // Recurly API fails to respond with proper error code
+          if (body.hasOwnProperty("error")) {
+            reject(body.error);
+          } else {
+            resolve(body);
+          }
+        }
+      });
+    });
+  }
+
   private static getLogLevelConfiguration(logLevel: LogLevel): string {
     switch (logLevel) {
       case LogLevel.Debug:
@@ -164,11 +213,26 @@ export class RecurlyJsMock {
       country: "AT",
       postalCode: "1080"
     };
+    RecurlyJsMock.deleteUndefinedProperties(details);
     if (!details) {
       return defaults;
     } else {
       return merge(defaults, details);
     }
+  }
+
+  /**
+   * Deletes undefined values from given details recursively including nested objects.
+   */
+  private static deleteUndefinedProperties(obj: any) {
+    Object.keys(obj).forEach((key) => {
+      if (obj[key] && typeof obj[key] === "object") {
+        RecurlyJsMock.deleteUndefinedProperties(obj[key]);
+      } else if (obj[key] == null) {
+        delete obj[key];
+      }
+    });
+    return obj;
   }
 
   public startDaemon(publicApiKey: string, logLevel: LogLevel = LogLevel.Error): Promise<boolean> {
@@ -220,13 +284,13 @@ export enum LogLevel {
 export interface PaymentDetails {
   address1?: string;
   address2?: string;
-  cardData: {
+  cardData?: {
     cvv?: number;
-    firstName: string;
-    lastName: string;
-    month: number;
-    number: string;
-    year: number;
+    firstName?: string;
+    lastName?: string;
+    month?: number;
+    number?: string;
+    year?: number;
   };
   city?: string;
   country?: string;
