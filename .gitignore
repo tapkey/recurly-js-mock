@@ -59,3 +59,6 @@ typings/
 
 # Build artifacts
 build
+
+# Package lock, Greenkeeper is taking care
+package-lock.json
