@@ -147,6 +147,10 @@ export class RecurlyJsMock {
     logLevel: LogLevel = LogLevel.Error,
     details?: PaymentDetails): Promise<RecurlyToken> {
 
+    if (details == null) {
+      details = {};
+    }
+
     return new Promise<RecurlyToken>((resolve, reject) => {
       const url = "https://api.recurly.com/js/v1/token";
       const data = RecurlyJsMock.mergeWithDefaults(details);
