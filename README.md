@@ -39,12 +39,12 @@ Options:
 
   -V, --version             output the version number
   -k, --key <value>         public key for Recurly.js
-  -n, --number [value]      the credit card number
-  -m, --month [value]       the credit card expiration month
-  -y, --year [value]        the credit card expiration year
+  -n, --number [value]      the credit card's number
+  -m, --month [value]       the credit card's expiration month
+  -y, --year [value]        the credit card's expiration year
   -f, --firstName [value]   first name
   -l, --lastName [value]    first name
-  -q, --cvv [value]         the credit card CVV
+  -q, --cvv [value]         the credit card's CVV
   -a, --address1 [value]    address field 1
   -b, --address2 [value]    address field 2
   -c, --city [value]        city
