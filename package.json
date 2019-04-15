@@ -24,7 +24,7 @@
     "@types/node": "^8.0.1",
     "commander": "^2.11.0",
     "deepmerge": "^2.0.0",
-    "file-url": "^2.0.2",
+    "file-url": "^3.0.0",
     "phantom": "^4.0.4",
     "request": "^2.81.0"
   },
