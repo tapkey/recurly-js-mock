@@ -26,7 +26,7 @@
     "deepmerge": "^2.0.0",
     "file-url": "^2.0.2",
     "phantom": "^4.0.4",
-    "request": "^2.81.0"
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "copyfiles": "^1.2.0",
